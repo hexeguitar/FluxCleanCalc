@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>PCB Flux Cleaner Calculator</title>
+	<script>
+		function insert(num) {
+			document.form1.textview.value = document.form1.textview.value + num;
+		}
+		function calc() {
+			var exp = document.form1.textview.value;
+			if (exp) {
+				var req_amnt = eval(exp);
+				var total_ml = parseFloat(req_amnt) * 1000.0;
+				document.getElementById("ethanol").innerHTML = (total_ml * 0.85) + " ml";
+				document.getElementById("ipa").innerHTML = (total_ml * 0.075) + " ml";
+				document.getElementById("acetate").innerHTML = (total_ml * 0.05) + " ml";
+				document.getElementById("acetone").innerHTML = (total_ml * 0.025) + " ml";
+				document.getElementById("total").innerHTML = total_ml + " ml";
+			}
+		}
+		function backspace() {
+			var exp = document.form1.textview.value;
+			document.form1.textview.value = exp.substring(0, exp.length - 1); /* remove the element from total length - 1 */
+		}
+	</script>
+	<style>
+		:root {
+			/* these variables are used everywhere */
+			--b-radius: min(1.9vmin, 15px);
+			/* border radius */
+			--b-width: 0.3rem;
+			/* border thickness */
+			--spacing: 0.3rem;
+			/* widget spacing */
+			--font: 'Rubik', sans-serif !important;
+			/* CSS HEX */
+			--black: #000000ff;
+			--dim-gray: #66666eff;
+			--taupe-gray: #9999a1ff;
+			--platinum: #e6e6e9ff;
+			--antiflash-white: #f4f4f6ff;
+
+			--btn_w: 80px;
+			--btn_w2: 175px;
+			--btn_h: 50px;
+		}
+
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+			overflow-y: hidden;
+			color: black;
+			font-family: var(--font);
+			touch-action: none;
+			background-color: var(--taupe-gray);
+		}
+
+		.grid-container {
+			display: grid;
+			grid-template-columns: auto auto;
+			grid-template-rows: auto auto;
+			padding: 10px;
+		}
+
+		.grid-item-left {
+			float: right;
+		}
+
+		.grid-item-right {
+
+			text-align: left;
+			float: left;
+		}
+
+		.item-head {
+			grid-column: 1 / span 2;
+			text-align: center;
+		}
+
+		.formstyle {
+			width: auto;
+			height: 500px;
+			margin: 10px;
+			border: var(--b-width);
+			border-radius: var(--b-radius);
+			padding: 10px;
+			text-align: center;
+			color: black;
+			background-color: var(--antiflash-white);
+			float: right;
+		}
+
+		.results {
+			width: auto;
+			height: 500px;
+			margin: 10px;
+			border: var(--b-width);
+			border-radius: var(--b-radius);
+			padding: 10px;
+			font-size: 25px;
+			color: black;
+			background-color: var(--antiflash-white);
+			float: left;
+		}
+
+		h1 {
+			text-align: center;
+			padding: 23px;
+			background-color: var(--dim-gray);
+			border-radius: var(--b-radius);
+			color: white;
+		}
+
+		input:hover {
+			background-color: var(--taupe-gray);
+		}
+
+		table {
+			padding: 10px;
+			margin: 0px auto;
+		}
+
+		th,
+		td {
+			padding: 5px;
+			text-align: left;
+		}
+
+		.btn {
+			width: var(--btn_w);
+			height: var(--btn_h);
+			font-size: 25px;
+			margin: 2px;
+			cursor: pointer;
+			background-color: black;
+			color: white;
+			border-radius: var(--b-radius);
+		}
+
+		.textview {
+			width: 80%;
+			margin: 15px;
+			font-size: 25px;
+			padding: 15px;
+			background-color: var(--platinum);
+			border-color: var(--dim-gray);
+			border-radius: var(--b-radius);
+		}
+	</style>
+</head>
+<body>
+	<div class="grid-container">
+		<!-- HEADER -->
+		<div class="item-head">
+			<h1> PCB Flux Cleaner Calculator </h1>
+			<p>11.2024 by P.Z. (www.hexefx.com). Based on mixture developed by <a href="https://x.com/Voultar/status/1805349278438588773" target="_blank">Voultar</a><br/>
+				85% Ethanol, 7.5% I.P.A, 5% Ethyl Acetate, 2.5% Acetone</p>
+		</div>
+		<!-- INPUT -->
+		<div class="grid-item-left">
+			<div class="formstyle">
+				<p>Enter desired amount in litres:</p>
+				<form name="form1">
+					<input class="textview" name="textview">
+				</form>
+					<table>
+						<tr>
+							<td> <input class="btn" type="button" value="Clr" onclick="form1.textview.value = '' ">
+							</td>
+							<td> <input class="btn" type="button" value="Back" onclick="backspace()"> </td>
+							<td> <input class="btn" type="button" value="Calc" onclick="calc()"> </td>
+						</tr>
+						<tr>
+							<td> <input class="btn" type="button" value="7" onclick="insert(7)"> </td>
+							<td> <input class="btn" type="button" value="8" onclick="insert(8)"> </td>
+							<td> <input class="btn" type="button" value="9" onclick="insert(9)"> </td>
+						</tr>
+						<tr>
+							<td> <input class="btn" type="button" value="4" onclick="insert(4)"> </td>
+							<td> <input class="btn" type="button" value="5" onclick="insert(5)"> </td>
+							<td> <input class="btn" type="button" value="6" onclick="insert(6)"> </td>
+						</tr>
+						<tr>
+							<td> <input class="btn" type="button" value="1" onclick="insert(1)"> </td>
+							<td> <input class="btn" type="button" value="2" onclick="insert(2)"> </td>
+							<td> <input class="btn" type="button" value="3" onclick="insert(3)"> </td>
+						</tr>
+						<tr>
+							<td colspan="2"> <input class="btn" style="width: var(--btn_w2)" type="button" value="0"
+									onclick="insert(0)"> </td>
+							<td> <input class="btn" type="button" value="." onclick="insert('.')"> </td>
+						</tr>
+					</table>
+			</div>
+		</div>
+		<!-- RESULTS-->
+		<div class="grid-item-right">
+			<div class="results">
+				<table>
+					<tr>
+						<td>Ethanol</td>
+						<td id="ethanol">???</td>
+					</tr>
+					<tr>
+						<td>Isopropyl alcohol</td>
+						<td id="ipa">???</td>
+					</tr>
+					<tr>
+						<td>Ethyl acetate</td>
+						<td id="acetate">???</td>
+					</tr>
+					<tr>
+						<td>Acetone</td>
+						<td id="acetone">???</td>
+					</tr>
+					<tr>
+						<td>Total</td>
+						<td id="total">???</td>
+					</tr>
+					<tr>
+						<td style="font-size: 15px;">
+							<p>
+							Before asking that one specific question<br/> 
+							about acetone, here is the reply<br/>
+							from Voultar:</p>
+							<p><i>The ratio is 20:1. That's highly, highly<br/>
+								  diluted and is far less than what <br/>
+								  MG Chemicals uses in their more<br/>
+								  aggressive flux cleaning systems.<br/>
+								  Polystyrene will be perfectly safe.</i></p>
+							<p>I have tested it myself on a few differnt<br/>
+							   types of plastic parts, no issues at all.</p>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
