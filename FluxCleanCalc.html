@@ -12,11 +12,15 @@
 			if (exp) {
 				var req_amnt = eval(exp);
 				var total_ml = parseFloat(req_amnt) * 1000.0;
-				document.getElementById("ethanol").innerHTML = (total_ml * 0.85) + " ml";
-				document.getElementById("ipa").innerHTML = (total_ml * 0.075) + " ml";
-				document.getElementById("acetate").innerHTML = (total_ml * 0.05) + " ml";
-				document.getElementById("acetone").innerHTML = (total_ml * 0.025) + " ml";
-				document.getElementById("total").innerHTML = total_ml + " ml";
+				var eth = total_ml * 0.85;
+				var ipa = total_ml * 0.075;
+				var e_acet = total_ml * 0.05;
+				var ace = total_ml * 0.025;
+				document.getElementById("ethanol").innerHTML = +eth.toFixed(2) + " ml";
+				document.getElementById("ipa").innerHTML = +ipa.toFixed(2) + " ml";
+				document.getElementById("acetate").innerHTML = +e_acet.toFixed(2) + " ml";
+				document.getElementById("acetone").innerHTML = +ace.toFixed(2) + " ml";
+				document.getElementById("total").innerHTML = +total_ml.toFixed(2) + " ml";
 			}
 		}
 		function backspace() {
